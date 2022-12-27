@@ -8,6 +8,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 venv/
+.gitignore
+.gitattributes
 # C extensions
 *.so
 
