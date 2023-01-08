@@ -3,7 +3,7 @@ from stable_baselines.common import set_global_seeds
 from stable_baselines.common.vec_env import DummyVecEnv
 from stable_baselines.common.policies import MlpPolicy
 
-from keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 from keras.layers import Dense
 from keras.models import Sequential
 from collections import deque
@@ -77,7 +77,7 @@ class DQNSolver:
         self.model.add(Dense(24, input_shape=(observation_space,), activation="relu"))
         self.model.add(Dense(24, activation="relu"))
         self.model.add(Dense(self.action_space, activation="linear"))
-        self.model.compile(loss="mse", optimizer=Adam(lr=0.001))
+        self.model.compile(loss="mse", optimizer=Adam(learning_rate=0.001))
     # remember, for exploitation
 
     def remember(self, state, action, reward, next_state, terminal):
@@ -114,7 +114,7 @@ def agent():
     observation_space = env.observation_space.shape[0]
     action_space = env.action_space.shape[0]
     solver = DQNSolver(observation_space, action_space)
-    # episode = 0
+    episode = 0
     accumulated_step = 0
     while True:
         state = env.reset()
@@ -128,7 +128,7 @@ def agent():
             next_state = np.reshape(next_state, [1, observation_space])
             step += 1
             accumulated_step += 1
-            # print('\tstate: ', state)
+            print('\tstate: ', state)
             if step >= 96:  # Termination of a single episode
                 done = True
             solver.remember(state, action, reward, next_state, done)
@@ -143,7 +143,7 @@ def agent():
                 break
         if terminal:
             break
-    
+    print('episode: ', episode)
     for _ in range(t_range):
         action = solver.act(state)
         next_state, reward, _, _ = env.step(action)
