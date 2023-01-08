@@ -8,3 +8,5 @@
 	- Implement 'offload-autoscale-discrete-v0' as a custom gym environment -- this is the discrete version
 4. plot_compare_p.py:
 	- Graph the time component vs. energy component of the optimal PPO total cost for different priority coefficients
+5. install libopenmpi-dev if needed:
+  - Just sudo apt install libopenmpi-dev

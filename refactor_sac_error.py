@@ -1,7 +1,7 @@
 # from stable_baselines import PPO2
 from stable_baselines.common import set_global_seeds
 from stable_baselines.common.vec_env import DummyVecEnv
-from stable_baselines.common.policies import MlpPolicy
+from stable_baselines.sac.policies import MlpPolicy
 from stable_baselines import SAC
 
 import time
